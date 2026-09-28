@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#008751" />
+  <meta name="description" content="ELISH-SPEAK – Learn Hausa, Igbo & Yoruba with English. Games, quizzes, puzzles & more by Rev. Silas C. Nentawe." />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="ELISH-SPEAK" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/svg+xml" href="icons/icon.svg" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <title>ELISH-SPEAK | Learn Hausa • Igbo • Yoruba</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- Splash / Loading -->
+  <div id="splash" class="splash">
+    <div class="splash-content">
+      <div class="logo-mark">🇳🇬</div>
+      <h1 class="splash-title">ELISH-SPEAK</h1>
+      <p class="splash-tagline">Speak Nigeria • One Word at a Time</p>
+      <div class="loader"></div>
+    </div>
+  </div>
+
+  <!-- App Shell -->
+  <div id="app" class="app hidden">
+    <!-- Header -->
+    <header class="header">
+      <button id="btn-back" class="icon-btn hidden" aria-label="Back">←</button>
+      <div class="header-center">
+        <h1 id="header-title" class="header-title">ELISH-SPEAK</h1>
+        <p id="header-sub" class="header-sub">Choose a language</p>
+      </div>
+      <button id="btn-menu" class="icon-btn" aria-label="Menu">☰</button>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main" class="main">
+      <!-- HOME VIEW -->
+      <section id="view-home" class="view active">
+        <div class="hero">
+          <h2>Welcome!</h2>
+          <p>Master the three major Nigerian languages with fun lessons, games & quizzes.</p>
+        </div>
+        <div class="lang-grid">
+          <button class="lang-card" data-lang="hausa">
+            <span class="lang-flag">🟢</span>
+            <span class="lang-name">Hausa</span>
+            <span class="lang-desc">Northern Nigeria</span>
+          </button>
+          <button class="lang-card" data-lang="igbo">
+            <span class="lang-flag">🟢</span>
+            <span class="lang-name">Igbo</span>
+            <span class="lang-desc">South-East Nigeria</span>
+          </button>
+          <button class="lang-card" data-lang="yoruba">
+            <span class="lang-flag">🟢</span>
+            <span class="lang-name">Yoruba</span>
+            <span class="lang-desc">South-West Nigeria</span>
+          </button>
+        </div>
+        <div class="stats-bar" id="home-stats">
+          <div class="stat"><span id="stat-words">0</span><small>Words</small></div>
+          <div class="stat"><span id="stat-streak">0</span><small>Day Streak</small></div>
+          <div class="stat"><span id="stat-score">0</span><small>Score</small></div>
+        </div>
+      </section>
+
+      <!-- LANGUAGE HUB -->
+      <section id="view-hub" class="view">
+        <div class="hub-grid">
+          <button class="hub-card" data-mode="lessons">
+            <span class="hub-icon">📚</span>
+            <span>Lessons</span>
+          </button>
+          <button class="hub-card" data-mode="quiz">
+            <span class="hub-icon">❓</span>
+            <span>Quiz</span>
+          </button>
+          <button class="hub-card" data-mode="match">
+            <span class="hub-icon">🃏</span>
+            <span>Match Game</span>
+          </button>
+          <button class="hub-card" data-mode="memory">
+            <span class="hub-icon">🧠</span>
+            <span>Memory</span>
+          </button>
+          <button class="hub-card" data-mode="scramble">
+            <span class="hub-icon">🔤</span>
+            <span>Word Puzzle</span>
+          </button>
+          <button class="hub-card" data-mode="exercise">
+            <span class="hub-icon">✍️</span>
+            <span>Exercises</span>
+          </button>
+        </div>
+        <div class="progress-card">
+          <h3>Your Progress</h3>
+          <div class="progress-bar"><div id="progress-fill" class="progress-fill"></div></div>
+          <p id="progress-text">0% mastered</p>
+        </div>
+      </section>
+
+      <!-- LESSONS -->
+      <section id="view-lessons" class="view">
+        <div class="category-tabs" id="category-tabs"></div>
+        <div class="flashcard-area">
+          <div id="flashcard" class="flashcard">
+            <div class="card-front">
+              <p class="card-label">English</p>
+              <p id="card-en" class="card-word">Hello</p>
+            </div>
+            <div class="card-back">
+              <p class="card-label" id="card-lang-label">Hausa</p>
+              <p id="card-native" class="card-word">Sannu</p>
+              <p id="card-pron" class="card-pron">SAN-nu</p>
+            </div>
+          </div>
+          <div class="card-actions">
+            <button id="btn-prev" class="btn secondary">← Prev</button>
+            <button id="btn-flip" class="btn primary">Flip</button>
+            <button id="btn-next" class="btn secondary">Next →</button>
+          </div>
+          <div class="card-nav">
+            <span id="card-counter">1 / 10</span>
+            <button id="btn-speak" class="btn ghost" title="Listen">🔊 Speak</button>
+            <button id="btn-know" class="btn success">I know it ✓</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUIZ -->
+      <section id="view-quiz" class="view">
+        <div class="quiz-header">
+          <span id="quiz-progress">Question 1/10</span>
+          <span id="quiz-score">Score: 0</span>
+        </div>
+        <div class="quiz-body">
+          <p id="quiz-question" class="quiz-q">What is the Hausa word for “Hello”?</p>
+          <div id="quiz-options" class="quiz-options"></div>
+        </div>
+        <div id="quiz-feedback" class="quiz-feedback hidden"></div>
+        <button id="btn-quiz-next" class="btn primary full hidden">Next Question</button>
+        <div id="quiz-result" class="quiz-result hidden">
+          <h2 id="result-title">Well done!</h2>
+          <p id="result-score">You scored 8/10</p>
+          <button id="btn-quiz-retry" class="btn primary">Try Again</button>
+          <button id="btn-quiz-home" class="btn secondary">Back to Hub</button>
+        </div>
+      </section>
+
+      <!-- MATCH GAME -->
+      <section id="view-match" class="view">
+        <p class="game-instruction">Tap a pair: English ↔ Native word</p>
+        <div id="match-board" class="match-board"></div>
+        <div class="game-footer">
+          <span id="match-pairs">Pairs: 0/6</span>
+          <button id="btn-match-reset" class="btn secondary">Reset</button>
+        </div>
+      </section>
+
+      <!-- MEMORY GAME -->
+      <section id="view-memory" class="view">
+        <p class="game-instruction">Find matching pairs. Flip two cards!</p>
+        <div id="memory-board" class="memory-board"></div>
+        <div class="game-footer">
+          <span id="memory-moves">Moves: 0</span>
+          <button id="btn-memory-reset" class="btn secondary">New Game</button>
+        </div>
+      </section>
+
+      <!-- WORD SCRAMBLE -->
+      <section id="view-scramble" class="view">
+        <p class="game-instruction">Unscramble the letters to form the correct word</p>
+        <div class="scramble-area">
+          <p id="scramble-hint" class="scramble-hint">English: Hello</p>
+          <div id="scramble-letters" class="scramble-letters"></div>
+          <input id="scramble-input" type="text" placeholder="Type the word…" autocomplete="off" />
+          <div class="scramble-actions">
+            <button id="btn-scramble-check" class="btn primary">Check</button>
+            <button id="btn-scramble-skip" class="btn secondary">Skip</button>
+            <button id="btn-scramble-hint" class="btn ghost">Hint</button>
+          </div>
+          <p id="scramble-feedback" class="feedback"></p>
+        </div>
+      </section>
+
+      <!-- EXERCISES -->
+      <section id="view-exercise" class="view">
+        <div class="exercise-tabs">
+          <button class="ex-tab active" data-ex="translate">Translate</button>
+          <button class="ex-tab" data-ex="fill">Fill Blank</button>
+        </div>
+        <div id="ex-translate" class="exercise-panel active">
+          <p class="ex-prompt">Translate to the selected language:</p>
+          <p id="ex-en" class="ex-word">Thank you</p>
+          <input id="ex-answer" type="text" placeholder="Type your answer…" />
+          <button id="btn-ex-check" class="btn primary full">Check Answer</button>
+          <p id="ex-feedback" class="feedback"></p>
+          <button id="btn-ex-next" class="btn secondary full hidden">Next</button>
+        </div>
+        <div id="ex-fill" class="exercise-panel">
+          <p class="ex-prompt">Complete the phrase:</p>
+          <p id="fill-sentence" class="ex-word">___ means “Hello”</p>
+          <input id="fill-answer" type="text" placeholder="Missing word…" />
+          <button id="btn-fill-check" class="btn primary full">Check</button>
+          <p id="fill-feedback" class="feedback"></p>
+          <button id="btn-fill-next" class="btn secondary full hidden">Next</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- Bottom Nav (mobile) -->
+    <nav class="bottom-nav" id="bottom-nav">
+      <button class="nav-item active" data-nav="home">🏠<span>Home</span></button>
+      <button class="nav-item" data-nav="hub">📖<span>Learn</span></button>
+      <button class="nav-item" data-nav="progress">📊<span>Stats</span></button>
+      <button class="nav-item" data-nav="about">ℹ️<span>About</span></button>
+    </nav>
+
+    <!-- Side Menu -->
+    <aside id="side-menu" class="side-menu">
+      <div class="side-header">
+        <h2>Menu</h2>
+        <button id="btn-close-menu" class="icon-btn">✕</button>
+      </div>
+      <ul class="side-list">
+        <li><button data-nav="home">🏠 Home</button></li>
+        <li><button data-nav="hub">📖 Language Hub</button></li>
+        <li><button data-nav="progress">📊 My Progress</button></li>
+        <li><button data-nav="about">ℹ️ About & Credits</button></li>
+        <li><button id="btn-install" class="install-btn hidden">⬇️ Install App</button></li>
+        <li><button id="btn-reset-data">🗑️ Reset Progress</button></li>
+      </ul>
+    </aside>
+    <div id="menu-overlay" class="overlay hidden"></div>
+
+    <!-- Progress / Stats View (overlay style) -->
+    <section id="view-progress" class="view modal-view">
+      <div class="modal-card">
+        <h2>Your Learning Stats</h2>
+        <div class="stats-grid">
+          <div class="stat-box"><span id="p-words">0</span><small>Words Learned</small></div>
+          <div class="stat-box"><span id="p-quizzes">0</span><small>Quizzes Taken</small></div>
+          <div class="stat-box"><span id="p-games">0</span><small>Games Played</small></div>
+          <div class="stat-box"><span id="p-streak">0</span><small>Day Streak</small></div>
+          <div class="stat-box"><span id="p-score">0</span><small>Total Score</small></div>
+          <div class="stat-box"><span id="p-best">0</span><small>Best Quiz</small></div>
+        </div>
+        <h3>Per Language</h3>
+        <div id="lang-progress-list"></div>
+        <button class="btn primary full" data-nav="home">Close</button>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="view-about" class="view modal-view">
+      <div class="modal-card about-card">
+        <div class="about-logo">🇳🇬</div>
+        <h2>ELISH-SPEAK</h2>
+        <p class="about-tag">Speak Nigeria • One Word at a Time</p>
+        <p>A free Progressive Web App designed to help anyone learn the three major Nigerian languages — <strong>Hausa</strong>, <strong>Igbo</strong> and <strong>Yoruba</strong> — using English as the bridge language.</p>
+        <p>Features include interactive lessons, quizzes, matching games, memory cards, word puzzles and translation exercises.</p>
+        <hr />
+        <p><strong>Creator</strong><br>Rev. Silas C. Nentawe</p>
+        <p class="small">Built with ❤️ for Nigerian culture and language preservation.<br>Works offline • Installable on any device</p>
+        <button class="btn primary full" data-nav="home">Back to Home</button>
+      </div>
+    </section>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
